@@ -1,0 +1,75 @@
+table 'Session Level Perceived Recovery'
+	lineageTag: c62a35b4-1903-4d67-a1a8-6dffd01c06e9
+
+	measure 'SessionCount PR' = ```
+			
+			COUNTROWS ( 'Session Level Perceived Recovery' )
+			
+			```
+		formatString: 0
+		lineageTag: 41686720-6423-42e9-8705-b811fe290983
+
+	column sessionDate
+		formatString: General Date
+		lineageTag: 4ff47700-f154-45b8-92b6-7be240ed305e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: CFC Recovery status Data[sessionDate]
+
+		variation Variation
+			isDefault
+			relationship: 35397a56-e1fc-48c9-93b2-8ca5b9086a5d
+			defaultHierarchy: LocalDateTable_b8820f38-e53f-4b6d-9ab5-f87a787ce1cc.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column PerceivedRecoveryScore
+		lineageTag: a928be42-98a6-4781-8876-e53d9071aacf
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [PerceivedRecoveryScore]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Perceived Recovery Baseline Category' =
+			
+			SWITCH (
+			    TRUE(),
+			    'Session Level Perceived Recovery'[PerceivedRecoveryScore] < 0, "Below Baseline",
+			    'Session Level Perceived Recovery'[PerceivedRecoveryScore] = 0, "At Baseline",
+			    "Above Baseline"
+			)
+		lineageTag: aaa59547-cd69-492a-a40b-f2fb444ed7b0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Perceived Recovery Bin' =
+			
+			FLOOR ( 'Session Level Perceived Recovery'[PerceivedRecoveryScore], 0.1 )
+		lineageTag: ae724ef0-39ab-4cf4-a370-d08f117dc5d4
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Session Level Perceived Recovery' = calculated
+		mode: import
+		source =
+				
+				SUMMARIZE (
+				    FILTER (
+				        'CFC Recovery status Data',
+				        'CFC Recovery status Data'[metric] = "subjective_baseline_composite"
+				            && NOT ISBLANK ( 'CFC Recovery status Data'[value] )
+				    ),
+				    'CFC Recovery status Data'[sessionDate],
+				    "PerceivedRecoveryScore",
+				        AVERAGE ( 'CFC Recovery status Data'[value] )
+				)
+
+	annotation PBI_Id = 6bdde88481b34989847c95dca39d004d
+

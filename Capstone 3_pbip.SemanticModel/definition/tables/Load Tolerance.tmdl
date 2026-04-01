@@ -1,0 +1,71 @@
+table 'Load Tolerance'
+	lineageTag: 60b70abd-e22c-4f4a-8569-7c7e6b35696b
+
+	measure 'SessionCount LT' =
+			
+			COUNTROWS ( 'Load Tolerance' )
+		formatString: 0
+		lineageTag: 6ef55ef2-4654-4ae9-b0df-1a130a2a5b44
+
+	column sessionDate
+		formatString: General Date
+		lineageTag: 89bec57e-d873-4463-9bae-b775685b2164
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: CFC Recovery status Data[sessionDate]
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadToleranceScore
+		lineageTag: e5c37d0e-bce9-4515-b818-dcada12c8ac3
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [LoadToleranceScore]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Load Tolerance Baseline Category' =
+			
+			SWITCH (
+			    TRUE(),
+			    'Load Tolerance'[LoadToleranceScore] < 0, "Below Baseline",
+			    'Load Tolerance'[LoadToleranceScore] = 0, "At Baseline",
+			    "Above Baseline"
+			)
+		lineageTag: fb9889ec-4f3d-4ad2-902f-3b022f161e8e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Load Tolerance Bin' = ```
+			
+			FLOOR ( 'Load Tolerance'[LoadToleranceScore], 0.1 )
+			
+			```
+		lineageTag: cdcbf020-2f22-4a23-8bea-7fa218ee17de
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Load Tolerance' = calculated
+		mode: import
+		source = ```
+				
+				SUMMARIZE (
+				    FILTER (
+				        'CFC Recovery status Data',
+				        'CFC Recovery status Data'[metric] = "msk_load_tolerance_baseline_composite"
+				            && NOT ISBLANK ( 'CFC Recovery status Data'[value] )
+				    ),
+				    'CFC Recovery status Data'[sessionDate],
+				    "LoadToleranceScore", AVERAGE ( 'CFC Recovery status Data'[value] )
+				)
+				
+				```
+
+	annotation PBI_Id = c5dcfcd98c1b445280df83458bd08c11
+

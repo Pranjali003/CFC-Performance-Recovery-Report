@@ -1,0 +1,24 @@
+table 'Radar Category'
+	lineageTag: 0b79a03a-58bf-4a25-aa9d-bed765f6cbec
+
+	column 'Radar Category'
+		dataType: string
+		lineageTag: c04de4e7-b646-4097-90b5-e76803982e47
+		summarizeBy: none
+		sourceColumn: Radar Category
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Radar Category' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("JchBCoAgEEbhq4jrLlK0CGsnLgb9C0FnQkXo9oHu3ves1SvfiXKmFoW1W6zeJHJThvjB8C4U1CUJhdjPdSbgnSUFjFoHDhSP2BGUgZeO8mnnfg==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Radar Category" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Radar Category", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

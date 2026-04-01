@@ -1,0 +1,27 @@
+table FilterType
+	lineageTag: 295683a8-1e2d-4555-96c7-a583c776e673
+
+	column Type
+		lineageTag: 62624a01-e4fb-49e9-adfe-53294517ade2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Type]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FilterType = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Type", STRING,
+				    {
+				        {"Relative"},
+				        {"Range"},
+				        {"Start"},
+				        {"End"}
+				    }
+				)
+
+	annotation PBI_Id = 4e61d95befba4798b7a9e2b6a17893c1
+

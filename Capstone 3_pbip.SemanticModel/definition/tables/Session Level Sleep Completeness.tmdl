@@ -1,0 +1,39 @@
+table 'Session Level Sleep Completeness'
+	lineageTag: d66e33e1-d04e-4ba5-8d8f-7244f66ae368
+
+	column sessionDate
+		formatString: General Date
+		lineageTag: d015c1e6-d942-44e3-8cc1-cf2760045a72
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: CFC Recovery status Data[sessionDate]
+
+		annotation SummarizationSetBy = Automatic
+
+	column SleepCompleteness
+		lineageTag: 9b10dc7e-73a8-4b89-a9cd-864b87e529c9
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [SleepCompleteness]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Session Level Sleep Completeness' = calculated
+		mode: import
+		source =
+				
+				SUMMARIZE (
+				    FILTER (
+				        'CFC Recovery status Data',
+				        'CFC Recovery status Data'[metric] = "sleep_baseline_completeness"
+				            && NOT ISBLANK ( 'CFC Recovery status Data'[value] )
+				    ),
+				    'CFC Recovery status Data'[sessionDate],
+				    "SleepCompleteness",
+				        AVERAGE ( 'CFC Recovery status Data'[value] )
+				)
+
+	annotation PBI_Id = 0a5a6862c5dc448ca289fd14033b0773
+

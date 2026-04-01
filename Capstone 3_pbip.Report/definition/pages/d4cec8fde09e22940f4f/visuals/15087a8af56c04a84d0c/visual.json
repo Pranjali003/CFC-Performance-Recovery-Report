@@ -1,0 +1,113 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "15087a8af56c04a84d0c",
+  "position": {
+    "x": 310,
+    "y": 272.85714285714289,
+    "z": 11000,
+    "height": 21.428571428571431,
+    "width": 85.714285714285722,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "  30-Days Avg",
+                    "textStyle": {
+                      "fontFamily": "DIN",
+                      "fontSize": "9pt",
+                      "color": "#b8c1e0"
+                    }
+                  },
+                  {
+                    "value": " ",
+                    "textStyle": {
+                      "fontFamily": "Aptos, sans-serif",
+                      "fontSize": "9pt",
+                      "color": "#b8c1e0"
+                    }
+                  },
+                  {
+                    "value": "                 ",
+                    "textStyle": {
+                      "fontFamily": "Aptos, sans-serif",
+                      "color": "#b8c1e0"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0E1630'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

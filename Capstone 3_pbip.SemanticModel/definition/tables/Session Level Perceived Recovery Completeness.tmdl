@@ -1,0 +1,41 @@
+table 'Session Level Perceived Recovery Completeness'
+	lineageTag: 6d33def6-4440-4e0e-b4b1-5d35445162d6
+
+	column sessionDate
+		formatString: General Date
+		lineageTag: c1c4eb7b-459b-45e4-b542-7294a7ced77a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: CFC Recovery status Data[sessionDate]
+
+		annotation SummarizationSetBy = Automatic
+
+	column PerceivedRecoveryCompleteness
+		lineageTag: 75104624-e0d7-43b3-be39-c01ad93160fc
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [PerceivedRecoveryCompleteness]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Session Level Perceived Recovery Completeness' = calculated
+		mode: import
+		source = ```
+				
+				SUMMARIZE (
+				    FILTER (
+				        'CFC Recovery status Data',
+				        'CFC Recovery status Data'[metric] = "subjective_baseline_completeness"
+				            && NOT ISBLANK ( 'CFC Recovery status Data'[value] )
+				    ),
+				    'CFC Recovery status Data'[sessionDate],
+				    "PerceivedRecoveryCompleteness",
+				        AVERAGE ( 'CFC Recovery status Data'[value] )
+				)
+				
+				```
+
+	annotation PBI_Id = 19b417abe0e54dec91571bd6f6e5fd53
+

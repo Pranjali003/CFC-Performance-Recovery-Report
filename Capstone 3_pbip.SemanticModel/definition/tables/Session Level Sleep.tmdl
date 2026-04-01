@@ -1,0 +1,68 @@
+table 'Session Level Sleep'
+	lineageTag: 1d289ab1-4aeb-44f5-8ae6-c22c5819535f
+
+	measure 'SessionCount S' =
+			
+			COUNTROWS ( 'Session Level Sleep' )
+		formatString: 0
+		lineageTag: 1cdadcd3-8f51-4b67-8a3f-76a4c6008758
+
+	column sessionDate
+		formatString: General Date
+		lineageTag: b529702f-07f8-4956-a0d5-4eb1b1e44251
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: CFC Recovery status Data[sessionDate]
+
+		annotation SummarizationSetBy = Automatic
+
+	column SleepScore
+		lineageTag: 984451b8-d79c-4f26-99bd-c31b666d9a1c
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [SleepScore]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sleep Baseline Category' =
+			
+			SWITCH (
+			    TRUE(),
+			    'Session Level Sleep'[SleepScore] < 0, "Below Baseline",
+			    'Session Level Sleep'[SleepScore] = 0, "At Baseline",
+			    'Session Level Sleep'[SleepScore] > 0, "Above Baseline"
+			)
+		lineageTag: 74388147-f34f-4c32-942a-397b86baa56c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sleep Bin' =
+			
+			FLOOR ( 'Session Level Sleep'[SleepScore], 0.1 )
+		lineageTag: 70e4c0e3-b51b-4127-b20b-d032569bfd7d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Session Level Sleep' = calculated
+		mode: import
+		source =
+				
+				SUMMARIZE (
+				    FILTER (
+				        'CFC Recovery status Data',
+				        'CFC Recovery status Data'[metric] = "sleep_baseline_composite"
+				            && NOT ISBLANK ( 'CFC Recovery status Data'[value] )
+				    ),
+				    'CFC Recovery status Data'[sessionDate],
+				    "SleepScore",
+				        AVERAGE ( 'CFC Recovery status Data'[value] )
+				)
+
+	annotation PBI_Id = b2f24dd757c445b6bcff99e473a38ce2
+

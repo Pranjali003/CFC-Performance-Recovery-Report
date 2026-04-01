@@ -1,0 +1,298 @@
+table 'cards(14,30 avg)'
+	lineageTag: 508f62f6-09fc-4728-b90e-da49e90433ac
+
+	measure 'Last Joint Range Date' = ```
+			
+			CALCULATE(
+			    MAX('CFC Recovery status Data'[sessionDate]),
+			    'CFC Recovery status Data'[metric] = "msk_joint_range_baseline_composite",
+			    NOT ISBLANK('CFC Recovery status Data'[value])
+			)
+			
+			```
+		lineageTag: 978b9c7b-b38b-41cb-8643-6283c4e49b2f
+
+	measure 'Joint Range (14 Days Avg)' =
+			
+			VAR _lastDate =
+			    CALCULATE(
+			        MAXX(
+			            'CFC Recovery status Data',
+			            DATEVALUE('CFC Recovery status Data'[sessionDate])
+			        ),
+			        'CFC Recovery status Data'[metric]
+			            = "msk_joint_range_baseline_composite",
+			        NOT ISBLANK('CFC Recovery status Data'[value])
+			    )
+			RETURN
+			CALCULATE(
+			    AVERAGE('CFC Recovery status Data'[value]),
+			    'CFC Recovery status Data'[metric]
+			        = "msk_joint_range_baseline_composite",
+			    DATEVALUE('CFC Recovery status Data'[sessionDate])
+			        >= _lastDate - 13,
+			    DATEVALUE('CFC Recovery status Data'[sessionDate])
+			        <= _lastDate
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 76f0fbba-00e5-44bf-882d-43a2fc5de758
+
+	measure 'Joint Range (30 Days Avg)' =
+			
+			VAR _lastDate =
+			    CALCULATE(
+			        MAXX(
+			            'CFC Recovery status Data',
+			            DATEVALUE('CFC Recovery status Data'[sessionDate])
+			        ),
+			        'CFC Recovery status Data'[metric]
+			            = "msk_joint_range_baseline_composite",
+			        NOT ISBLANK('CFC Recovery status Data'[value])
+			    )
+			RETURN
+			CALCULATE(
+			    AVERAGE('CFC Recovery status Data'[value]),
+			    'CFC Recovery status Data'[metric]
+			        = "msk_joint_range_baseline_composite",
+			    DATEVALUE('CFC Recovery status Data'[sessionDate])
+			        >= _lastDate - 29,
+			    DATEVALUE('CFC Recovery status Data'[sessionDate])
+			        <= _lastDate
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 008dfff3-34b2-48c1-bde5-b5788a398e2e
+
+	measure 'Load Tolerance (14 Days Avg)' =
+			
+			VAR _lastDate =
+			    CALCULATE(
+			        MAXX(
+			            'CFC Recovery status Data',
+			            DATEVALUE('CFC Recovery status Data'[sessionDate])
+			        ),
+			        'CFC Recovery status Data'[metric] = "msk_load_tolerance_baseline_composite",
+			        NOT ISBLANK('CFC Recovery status Data'[value])
+			    )
+			RETURN
+			CALCULATE(
+			    AVERAGE('CFC Recovery status Data'[value]),
+			    'CFC Recovery status Data'[metric] = "msk_load_tolerance_baseline_composite",
+			    DATEVALUE('CFC Recovery status Data'[sessionDate]) >= _lastDate - 13,
+			    DATEVALUE('CFC Recovery status Data'[sessionDate]) <= _lastDate
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 0dce9bb8-9940-4bc3-943b-94b583f382bb
+
+	measure 'Load Tolerance (30 Days Avg)' = ```
+			
+			VAR _lastDate =
+			    CALCULATE(
+			        MAXX(
+			            'CFC Recovery status Data',
+			            DATEVALUE('CFC Recovery status Data'[sessionDate])
+			        ),
+			        'CFC Recovery status Data'[metric] = "msk_load_tolerance_baseline_composite",
+			        NOT ISBLANK('CFC Recovery status Data'[value])
+			    )
+			RETURN
+			CALCULATE(
+			    AVERAGE('CFC Recovery status Data'[value]),
+			    'CFC Recovery status Data'[metric] = "msk_load_tolerance_baseline_composite",
+			    DATEVALUE('CFC Recovery status Data'[sessionDate]) >= _lastDate - 29,
+			    DATEVALUE('CFC Recovery status Data'[sessionDate]) <= _lastDate
+			)
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 84775c51-6761-4223-a8db-39820b387571
+
+	measure 'Perceived Recovery (7 Days Avg)' =
+			
+			VAR _lastDate =
+			    CALCULATE(
+			        MAXX(
+			            'CFC Recovery status Data',
+			            DATEVALUE('CFC Recovery status Data'[sessionDate])
+			        ),
+			        'CFC Recovery status Data'[metric] = "subjective_baseline_composite",
+			        NOT ISBLANK('CFC Recovery status Data'[value])
+			    )
+			RETURN
+			CALCULATE(
+			    AVERAGE('CFC Recovery status Data'[value]),
+			    'CFC Recovery status Data'[metric] = "subjective_baseline_composite",
+			    DATEVALUE('CFC Recovery status Data'[sessionDate]) >= _lastDate - 6,
+			    DATEVALUE('CFC Recovery status Data'[sessionDate]) <= _lastDate
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 6b94b603-3c1c-4be4-a69f-0fadf841ffde
+
+	measure 'Perceived Recovery (30 Days Avg)' =
+			
+			VAR _lastDate =
+			    CALCULATE(
+			        MAXX(
+			            'CFC Recovery status Data',
+			            DATEVALUE('CFC Recovery status Data'[sessionDate])
+			        ),
+			        'CFC Recovery status Data'[metric] = "subjective_baseline_composite",
+			        NOT ISBLANK('CFC Recovery status Data'[value])
+			    )
+			RETURN
+			CALCULATE(
+			    AVERAGE('CFC Recovery status Data'[value]),
+			    'CFC Recovery status Data'[metric] = "subjective_baseline_composite",
+			    DATEVALUE('CFC Recovery status Data'[sessionDate]) >= _lastDate - 29,
+			    DATEVALUE('CFC Recovery status Data'[sessionDate]) <= _lastDate
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: a4f9ef22-78e4-489f-aef2-1873888b2d30
+
+	measure 'Sleep (7 Days Avg)' =
+			
+			VAR _lastDate =
+			    CALCULATE(
+			        MAXX(
+			            'CFC Recovery status Data',
+			            DATEVALUE('CFC Recovery status Data'[sessionDate])
+			        ),
+			        'CFC Recovery status Data'[metric] = "sleep_baseline_composite",
+			        NOT ISBLANK('CFC Recovery status Data'[value])
+			    )
+			RETURN
+			CALCULATE(
+			    AVERAGE('CFC Recovery status Data'[value]),
+			    'CFC Recovery status Data'[metric] = "sleep_baseline_composite",
+			    DATEVALUE('CFC Recovery status Data'[sessionDate]) >= _lastDate - 6,
+			    DATEVALUE('CFC Recovery status Data'[sessionDate]) <= _lastDate
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: bcb4961f-0bfa-4d0d-bee2-822b7d373737
+
+	measure 'Sleep (30 Days Avg)' = ```
+			
+			VAR _lastDate =
+			    CALCULATE(
+			        MAXX(
+			            'CFC Recovery status Data',
+			            DATEVALUE('CFC Recovery status Data'[sessionDate])
+			        ),
+			        'CFC Recovery status Data'[metric] = "sleep_baseline_composite",
+			        NOT ISBLANK('CFC Recovery status Data'[value])
+			    )
+			RETURN
+			CALCULATE(
+			    AVERAGE('CFC Recovery status Data'[value]),
+			    'CFC Recovery status Data'[metric] = "sleep_baseline_composite",
+			    DATEVALUE('CFC Recovery status Data'[sessionDate]) >= _lastDate - 29,
+			    DATEVALUE('CFC Recovery status Data'[sessionDate]) <= _lastDate
+			)
+			
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: ee576f08-4dd4-435f-8b71-49061b64ee54
+
+	measure 'Soreness (7 Days Avg)' = ```
+			
+			VAR _lastDate =
+			    CALCULATE(
+			        MAXX(
+			            'CFC Recovery status Data',
+			            DATEVALUE('CFC Recovery status Data'[sessionDate])
+			        ),
+			        'CFC Recovery status Data'[metric] = "soreness_baseline_composite",
+			        NOT ISBLANK('CFC Recovery status Data'[value])
+			    )
+			RETURN
+			CALCULATE(
+			    AVERAGE('CFC Recovery status Data'[value]),
+			    'CFC Recovery status Data'[metric] = "soreness_baseline_composite",
+			    DATEVALUE('CFC Recovery status Data'[sessionDate]) >= _lastDate - 6,
+			    DATEVALUE('CFC Recovery status Data'[sessionDate]) <= _lastDate
+			)
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 3d147200-4958-4dec-88ef-690340f294b0
+
+	measure 'Soreness (30 Days Avg)' =
+			
+			VAR _lastDate =
+			    CALCULATE(
+			        MAXX(
+			            'CFC Recovery status Data',
+			            DATEVALUE('CFC Recovery status Data'[sessionDate])
+			        ),
+			        'CFC Recovery status Data'[metric] = "soreness_baseline_composite",
+			        NOT ISBLANK('CFC Recovery status Data'[value])
+			    )
+			RETURN
+			CALCULATE(
+			    AVERAGE('CFC Recovery status Data'[value]),
+			    'CFC Recovery status Data'[metric] = "soreness_baseline_composite",
+			    DATEVALUE('CFC Recovery status Data'[sessionDate]) >= _lastDate - 29,
+			    DATEVALUE('CFC Recovery status Data'[sessionDate]) <= _lastDate
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 6acc8e0f-211c-45ec-b6c0-f1bb285166c8
+
+	measure 'Inflammation (14 Days Avg)' = ```
+			
+			VAR _lastDate =
+			    CALCULATE(
+			        MAXX(
+			            'CFC Recovery status Data',
+			            DATEVALUE('CFC Recovery status Data'[sessionDate])
+			        ),
+			        'CFC Recovery status Data'[metric] = "bio_baseline_composite",
+			        NOT ISBLANK('CFC Recovery status Data'[value])
+			    )
+			RETURN
+			CALCULATE(
+			    AVERAGE('CFC Recovery status Data'[value]),
+			    'CFC Recovery status Data'[metric] = "bio_baseline_composite",
+			    DATEVALUE('CFC Recovery status Data'[sessionDate]) >= _lastDate - 13,
+			    DATEVALUE('CFC Recovery status Data'[sessionDate]) <= _lastDate
+			)
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 40444084-7957-400b-b34b-8ef8ad3e23df
+
+	measure 'Inflammation (30 Days Avg)' =
+			
+			VAR _lastDate =
+			    CALCULATE(
+			        MAXX(
+			            'CFC Recovery status Data',
+			            DATEVALUE('CFC Recovery status Data'[sessionDate])
+			        ),
+			        'CFC Recovery status Data'[metric] = "bio_baseline_composite",
+			        NOT ISBLANK('CFC Recovery status Data'[value])
+			    )
+			RETURN
+			CALCULATE(
+			    AVERAGE('CFC Recovery status Data'[value]),
+			    'CFC Recovery status Data'[metric] = "bio_baseline_composite",
+			    DATEVALUE('CFC Recovery status Data'[sessionDate]) >= _lastDate - 29,
+			    DATEVALUE('CFC Recovery status Data'[sessionDate]) <= _lastDate
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: e2b1050e-19ac-41fd-90f9-85f8336d6090
+
+	column Column
+		formatString: 0
+		lineageTag: e9671621-315b-4643-9a1d-af72ebddd2b2
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'cards(14,30 avg)' = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 08707032972a4a6c92e70eea5fe4954d
+

@@ -1,0 +1,41 @@
+table 'Joint Range'
+	lineageTag: 2e25db94-e52d-489d-a15d-baa4b0d2af75
+
+	column sessionDate
+		formatString: General Date
+		lineageTag: 0685cae6-5ce6-47df-84f4-3b3a93459716
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: CFC Recovery status Data[sessionDate]
+
+		annotation SummarizationSetBy = Automatic
+
+	column JointRangeCompositeScore
+		lineageTag: 68c1eff3-a723-489e-b1c7-36e6b8d2549c
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [JointRangeCompositeScore]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Joint Range' = calculated
+		mode: import
+		source = ```
+				
+				SUMMARIZE (
+				    FILTER (
+				        'CFC Recovery status Data',
+				        'CFC Recovery status Data'[metric] = "msk_joint_range_baseline_composite"
+				            && NOT ISBLANK ( 'CFC Recovery status Data'[value] )
+				    ),
+				    'CFC Recovery status Data'[sessionDate],
+				    "JointRangeCompositeScore",
+				        AVERAGE ( 'CFC Recovery status Data'[value] )
+				)
+				
+				```
+
+	annotation PBI_Id = 5ea0cdd01b644c14b72dc6cfca70bc0b
+

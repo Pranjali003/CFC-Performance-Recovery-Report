@@ -1,0 +1,464 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "1a2f9a73525656520a1f",
+  "position": {
+    "x": 1.6953125,
+    "y": 2.1416849015317272,
+    "z": 1000,
+    "height": 649.644420131291,
+    "width": 268.33029513888891,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Overview",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "The Squad Sense dashboard is a dynamic, data‑driven monitoring tool designed to support football players, coaches, and performance staff by providing real‑time insights into player recovery. Drawing from biometric and perception session‑based inputs, the dashboard surfaces meaningful trends and early warnings that can inform training decisions, reduce injury risk, and optimize performance. Each metric is tracked consistently over time to flag values that fall outside of personalized thresholds, with intuitive visual cues and alerting mechanisms built in for proactive support.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Data Source:",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  },
+                  {
+                    "value": " Chelsea FC",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Note: The player name, headshot, and profile is fictional but the recovery data is real data from CFC.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontStyle": "italic",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Category",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Inflammation",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " Blood biomarker analysis to assess signs of inflammation due to fatigue or illness.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " Collected around once per week.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Joint Range",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " The joint range of ankles, knees and hips.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " Collected around once per week.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Load Tolerance",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " The ability of the thigh and hip muscles to produce and tolerate force.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " Collected around once per week.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Perceived Recovery",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " Perceived level of recovery submitted by the player.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " Collected most days except match days and days off.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Sleep",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " Perceived quality of sleep.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " Collected most days.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Soreness",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " Self reported muscle soreness.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " Collected most days.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Metrics",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Each category has two metrics each.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Completeness",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " % of all tests that are pooled within the category (values range 0–100%).",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Composite",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " The category composite score, expressed as a percentage relative to the player’s normative values.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " E.g. ‑0.50 (‑50%) means that on that day, the player was 50% lower than normative value in the category.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Overall Recovery",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Aggregated “total” category of all of the baseline composite scores for the day.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.1
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "43D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "fb72a84b2e984bec2e32"
+}

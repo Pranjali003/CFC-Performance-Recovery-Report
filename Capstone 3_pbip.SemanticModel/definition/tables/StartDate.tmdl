@@ -1,0 +1,26 @@
+table StartDate
+	lineageTag: dff27727-279b-491f-bb94-965fee1fbfda
+
+	column Date
+		formatString: General Date
+		lineageTag: 40829225-9aeb-4e9b-9327-64cab0e9bf13
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 46b3935e-ea7b-45d6-a55b-3f0464c99c13
+			defaultHierarchy: LocalDateTable_994d9ce4-6a5f-4159-a0e5-0922a13f5a4a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition StartDate = calculated
+		mode: import
+		source = ```
+				CALENDAR(DATE(2020,1,1), DATE(2030,12,31))
+				
+				```
+
+	annotation PBI_Id = e5892789227740969f767354868f393c
+

@@ -1,0 +1,413 @@
+table 'Table Measures'
+	lineageTag: 5f19da63-59f3-4a4b-9c48-260010ba7a33
+
+	measure 'Muscle Soreness' = ```
+			
+			AVERAGEX(
+			    FILTER(
+			        'CFC Recovery status Data',
+			        'CFC Recovery status Data'[metric] = "soreness_baseline_composite"
+			            && NOT ISBLANK('CFC Recovery status Data'[value])
+			    ),
+			    ('CFC Recovery status Data'[value])
+			)
+			
+			```
+		lineageTag: 2086cc04-8892-497e-bd67-bfdc65aca447
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Fatigue =
+			
+			AVERAGEX(
+			    FILTER(
+			        'CFC Recovery status Data',
+			        'CFC Recovery status Data'[metric] IN {
+			            "subjective_baseline_composite",
+			            "sleep_baseline_composite"
+			        } && NOT ISBLANK('CFC Recovery status Data'[value])
+			    ),
+			    'CFC Recovery status Data'[value]
+			)
+		lineageTag: 11842303-d3b2-4c6c-b138-ecafafd1e2da
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Inflammation =
+			
+			AVERAGEX(
+			    FILTER(
+			        'CFC Recovery status Data',
+			        'CFC Recovery status Data'[metric] IN {
+			            "bio_baseline_composite"
+			        } && NOT ISBLANK('CFC Recovery status Data'[value])
+			    ),
+			    'CFC Recovery status Data'[value]
+			)
+		lineageTag: 21a7ea82-ed57-43c1-938d-a50fec839cb0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Most Recent' =
+			
+			
+			VAR _lastDate =
+			    CALCULATE(
+			        MAX('CFC Recovery status Data'[sessionDate]),
+			        'CFC Recovery status Data'[metric] = "bio_baseline_composite",
+			        NOT ISBLANK('CFC Recovery status Data'[value])
+			    )
+			RETURN
+			CALCULATE(
+			    AVERAGE('CFC Recovery status Data'[value]),
+			    'CFC Recovery status Data'[metric] = "bio_baseline_composite",
+			    'CFC Recovery status Data'[sessionDate] = _lastDate
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: bfc01d8c-534c-4fd1-994e-7bc562f53fd9
+
+	measure '14 Day Avg' = ```
+			
+			CALCULATE(
+			    AVERAGE('CFC Recovery status Data'[value]),
+			    DATESINPERIOD(
+			        'CFC Recovery status Data'[sessionDate],
+			        MAX('CFC Recovery status Data'[sessionDate]),
+			        -14,
+			        DAY
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: b0ca42aa-31e3-4cc4-8056-d0ed6531ae49
+
+	measure Soreness =
+			
+			AVERAGEX(
+			    FILTER(
+			        'CFC Recovery status Data',
+			        'CFC Recovery status Data'[metric] = "soreness_baseline_composite"
+			            && NOT ISBLANK('CFC Recovery status Data'[value])
+			    ),
+			    'CFC Recovery status Data'[value]
+			)
+		lineageTag: 9da82257-a411-4055-bbc2-bcf222a7f1b9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Sleep = ```
+			
+			AVERAGEX(
+			    FILTER(
+			        'CFC Recovery status Data',
+			        'CFC Recovery status Data'[metric] = "sleep_baseline_composite"
+			            && NOT ISBLANK('CFC Recovery status Data'[value])
+			    ),
+			    'CFC Recovery status Data'[value]
+			)
+			
+			```
+		lineageTag: ddffc701-3912-451e-ae26-04106de8b6da
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Perceived Recovery' =
+			
+			AVERAGEX(
+			    FILTER(
+			        'CFC Recovery status Data',
+			        'CFC Recovery status Data'[metric] = "subjective_baseline_composite"
+			            && NOT ISBLANK('CFC Recovery status Data'[value])
+			    ),
+			    'CFC Recovery status Data'[value]
+			)
+		lineageTag: 8e4b4c06-00f1-4974-8fc0-aba004ff2a55
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Joint Range' =
+			
+			AVERAGEX(
+			    FILTER(
+			        'CFC Recovery status Data',
+			        'CFC Recovery status Data'[metric] IN {
+			            "msk_joint_range_baseline_composite"
+			        } && NOT ISBLANK('CFC Recovery status Data'[value])
+			    ),
+			    'CFC Recovery status Data'[value]
+			)
+		lineageTag: d67e8b76-93a6-4482-8270-186d265e2b5d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Load Tolerance' =
+			
+			AVERAGEX(
+			    FILTER(
+			        'CFC Recovery status Data',
+			        'CFC Recovery status Data'[metric] = "msk_load_tolerance_baseline_composite"
+			            && NOT ISBLANK('CFC Recovery status Data'[value])
+			    ),
+			    'CFC Recovery status Data'[value]
+			)
+		lineageTag: 1c948c10-241e-437d-9fbc-174f68c7f870
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Joint Range (Most Recent)' =
+			
+			VAR _lastDate =
+			    CALCULATE(
+			        MAX('CFC Recovery status Data'[sessionDate]),
+			        FILTER(
+			            'CFC Recovery status Data',
+			            'CFC Recovery status Data'[metric] = "msk_joint_range_baseline_composite"
+			                && NOT ISBLANK('CFC Recovery status Data'[value])
+			        )
+			    )
+			RETURN
+			CALCULATE(
+			    AVERAGE('CFC Recovery status Data'[value]),
+			    FILTER(
+			        'CFC Recovery status Data',
+			        'CFC Recovery status Data'[metric] = "msk_joint_range_baseline_composite"
+			            && 'CFC Recovery status Data'[sessionDate] = _lastDate
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: de0018d0-e7e8-4033-8080-482b39277876
+
+	measure 'Load Tolerance (Most Recent)' =
+			
+			VAR _lastDate =
+			    CALCULATE(
+			        MAX('CFC Recovery status Data'[sessionDate]),
+			        FILTER(
+			            'CFC Recovery status Data',
+			            'CFC Recovery status Data'[metric] = "msk_load_tolerance_baseline_composite"
+			                && NOT ISBLANK('CFC Recovery status Data'[value])
+			        )
+			    )
+			RETURN
+			CALCULATE(
+			    AVERAGE('CFC Recovery status Data'[value]),
+			    FILTER(
+			        'CFC Recovery status Data',
+			        'CFC Recovery status Data'[metric] = "msk_load_tolerance_baseline_composite"
+			            && 'CFC Recovery status Data'[sessionDate] = _lastDate
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d0e84e9c-01bc-47d1-84ad-50d4bcdad867
+
+	measure 'Perceived Recovery (Most Recent)' =
+			
+			VAR _lastDate =
+			    CALCULATE(
+			        MAX('CFC Recovery status Data'[sessionDate]),
+			        'CFC Recovery status Data'[metric] = "subjective_baseline_composite",
+			        NOT ISBLANK('CFC Recovery status Data'[value])
+			    )
+			RETURN
+			CALCULATE(
+			    AVERAGE('CFC Recovery status Data'[value]),
+			    'CFC Recovery status Data'[metric] = "subjective_baseline_composite",
+			    'CFC Recovery status Data'[sessionDate] = _lastDate
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d1cb7509-c684-4467-b419-a770fd1d8a78
+
+	measure 'Sleep (Most Recent)' =
+			
+			VAR _lastDate =
+			    CALCULATE(
+			        MAX('CFC Recovery status Data'[sessionDate]),
+			        'CFC Recovery status Data'[metric] = "sleep_baseline_composite",
+			        NOT ISBLANK('CFC Recovery status Data'[value])
+			    )
+			RETURN
+			CALCULATE(
+			    AVERAGE('CFC Recovery status Data'[value]),
+			    'CFC Recovery status Data'[metric] = "sleep_baseline_composite",
+			    'CFC Recovery status Data'[sessionDate] = _lastDate
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 00a37ba2-e40d-44a4-a4d4-81d23346115f
+
+	measure 'Composite Score' = ```
+			
+			AVERAGE('CFC Recovery status Data'[value])
+			
+			```
+		lineageTag: 8f7454e8-5277-4551-959a-af15fc0abfe7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Composite Score Bin' =
+			
+			SWITCH(
+			    TRUE(),
+			    [Composite Score] < -0.6, "-0.7 to -0.6",
+			    [Composite Score] < -0.5, "-0.6 to -0.5",
+			    [Composite Score] < -0.4, "-0.5 to -0.4",
+			    [Composite Score] < -0.3, "-0.4 to -0.3",
+			    [Composite Score] < -0.2, "-0.3 to -0.2",
+			    [Composite Score] < -0.1, "-0.2 to -0.1",
+			    [Composite Score] <  0.0, "-0.1 to 0.0",
+			    [Composite Score] >= 0.0, "0.0+"
+			)
+		lineageTag: bca0f9da-6bb1-4fd7-986e-6a5e6a18416b
+
+	measure 'Baseline Status' =
+			
+			SWITCH(
+			    TRUE(),
+			    [Composite Score] < 0, "Below Baseline",
+			    [Composite Score] = 0, "At Baseline",
+			    [Composite Score] > 0, "Above Baseline"
+			)
+		lineageTag: 953a1a87-e438-4afd-9e19-a1e5211b4c0b
+
+	measure 'Session Count' =
+			
+			COUNT('CFC Recovery status Data'[sessionDate])
+		formatString: 0
+		lineageTag: a5aee0a5-70b9-4ba9-bfa0-720180df5345
+
+	measure 'soreness (Most Recent)' = ```
+			
+			AVERAGEX(
+			    FILTER(
+			        'CFC Recovery status Data',
+			        'CFC Recovery status Data'[metric] = "soreness_baseline_composite"
+			            && NOT ISBLANK('CFC Recovery status Data'[value])
+			    ),
+			    'CFC Recovery status Data'[value]
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 411a1b4f-d99c-4f11-91f8-32713bfb1a51
+
+	measure 'Inflammation Avg' = ```
+			
+			AVERAGEX(
+			    FILTER(
+			        'CFC Recovery status Data',
+			        'CFC Recovery status Data'[metric] IN {
+			            "bio_baseline_composite"
+			        }
+			        && NOT ISBLANK('CFC Recovery status Data'[value])
+			    ),
+			    'CFC Recovery status Data'[value]
+			)
+			
+			```
+		lineageTag: 4419d737-c34d-4ea2-b19f-0fc9ccee3051
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inflammation Median' = ```
+			
+			MEDIANX(
+			    FILTER(
+			        'CFC Recovery status Data',
+			        'CFC Recovery status Data'[metric] IN {
+			            "bio_baseline_composite"
+			        }
+			        && NOT ISBLANK('CFC Recovery status Data'[value])
+			    ),
+			    'CFC Recovery status Data'[value]
+			)
+			
+			```
+		lineageTag: 113a9a0f-fb40-40fd-851f-abdff325d5c7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Joint Range Median' =
+			
+			MEDIANX (
+			    FILTER (
+			        'CFC Recovery status Data',
+			        'CFC Recovery status Data'[metric] = "msk_joint_range_baseline_composite"
+			            && NOT ISBLANK ( 'CFC Recovery status Data'[value] )
+			    ),
+			    'CFC Recovery status Data'[value]
+			)
+		lineageTag: 82ad5291-9ad6-4341-85f3-5ed6a6583522
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Load Tolerance Median' =
+			
+			MEDIANX (
+			    FILTER (
+			        'CFC Recovery status Data',
+			        'CFC Recovery status Data'[metric] = "msk_load_tolerance_baseline_composite"
+			            && NOT ISBLANK ( 'CFC Recovery status Data'[value] )
+			    ),
+			    'CFC Recovery status Data'[value]
+			)
+		lineageTag: 54c4ac16-ce82-4d9b-8869-20fbbb3c6467
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PR Median' =
+			
+			MEDIANX (
+			    FILTER (
+			        'CFC Recovery status Data',
+			        'CFC Recovery status Data'[metric] = "subjective_baseline_composite"
+			            && NOT ISBLANK ( 'CFC Recovery status Data'[value] )
+			    ),
+			    'CFC Recovery status Data'[value]
+			)
+		lineageTag: 14c78cec-a9c6-41cc-a130-c2d0da08a272
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'sleep Median' =
+			
+			MEDIANX (
+			    FILTER (
+			        'CFC Recovery status Data',
+			        'CFC Recovery status Data'[metric] = "sleep_baseline_composite"
+			            && NOT ISBLANK ( 'CFC Recovery status Data'[value] )
+			    ),
+			    'CFC Recovery status Data'[value]
+			)
+		lineageTag: 1bf5723d-41ae-4e44-9f67-45f3f6f8a675
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'soreness Median' =
+			
+			MEDIANX (
+			    FILTER (
+			        'CFC Recovery status Data',
+			        'CFC Recovery status Data'[metric] = "soreness_baseline_composite"
+			            && NOT ISBLANK ( 'CFC Recovery status Data'[value] )
+			    ),
+			    'CFC Recovery status Data'[value]
+			)
+		lineageTag: b0932028-73e1-458a-9444-35d7b372e86e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column
+		formatString: 0
+		lineageTag: 224ddd42-4de6-478f-b39c-5c5e78ab63f0
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Table Measures' = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 0cd11ae4e91a42afaab5cfa4e8e0ce9f
+

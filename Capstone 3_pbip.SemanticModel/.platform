@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Capstone 3_pbip"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8832515e-dbcf-44fa-8cf4-f5e5cf4a0d50"
+  }
+}

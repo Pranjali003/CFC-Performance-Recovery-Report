@@ -1,0 +1,46 @@
+table comple
+	lineageTag: 2223261a-1d6e-4325-8f5c-af5f095ec985
+
+	measure 'Completeness Low' =
+			
+			0
+		formatString: 0
+		lineageTag: b84b1dcf-528e-4577-97ff-12299e42ad4d
+
+	measure 'Completeness High' =
+			
+			[Session Completeness %]
+		lineageTag: 09972769-6116-4651-8247-7fcb12eeda64
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Completeness Close' =
+			
+			[Session Completeness %]
+		lineageTag: 2e9e06ed-3d61-4a8d-8154-f244a691d37b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Completeness Open' = ```
+			
+			0
+			
+			```
+		formatString: 0
+		lineageTag: a0a9cb2a-1254-4eed-831e-248b7e753061
+
+	column Column
+		formatString: 0
+		lineageTag: 321312b5-e06b-4fdb-900a-2bbe6cb01a33
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition comple = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 415873ce87874825b92da4b468a26f9f
+

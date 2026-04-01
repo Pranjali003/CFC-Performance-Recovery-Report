@@ -1,0 +1,195 @@
+table 'CFC GPS Data'
+	lineageTag: 2d7b5acb-235b-400e-b523-8d31642a020e
+
+	column date
+		dataType: string
+		lineageTag: 1b57beba-020a-4cc5-93f6-0450d35a39d8
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	column opposition_code
+		dataType: string
+		lineageTag: dd3d96d4-5ff9-4673-ab6c-e7a6a2067f73
+		summarizeBy: none
+		sourceColumn: opposition_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column opposition_full
+		dataType: string
+		lineageTag: d44a3b4a-6269-4722-a8bb-72f4ba1949d2
+		summarizeBy: none
+		sourceColumn: opposition_full
+
+		annotation SummarizationSetBy = Automatic
+
+	column md_plus_code
+		dataType: string
+		lineageTag: 6c8d18a4-5d44-4d6c-95e0-a22139b00538
+		summarizeBy: none
+		sourceColumn: md_plus_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column md_minus_code
+		dataType: string
+		lineageTag: 0d1b1427-ed1b-4d18-81f1-3bc1250013ad
+		summarizeBy: none
+		sourceColumn: md_minus_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: string
+		lineageTag: 6e68d01d-936e-4a0d-8d0c-52792de0ac58
+		summarizeBy: none
+		sourceColumn: season
+
+		annotation SummarizationSetBy = Automatic
+
+	column distance
+		dataType: double
+		lineageTag: caab6d04-2a1a-4553-9eaf-98bb1798c197
+		summarizeBy: sum
+		sourceColumn: distance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column distance_over_21
+		dataType: double
+		lineageTag: 51000d85-aaa8-4716-97eb-61b6639acc02
+		summarizeBy: sum
+		sourceColumn: distance_over_21
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column distance_over_24
+		dataType: double
+		lineageTag: 7ed05b38-bf37-490b-87df-e0edd6b9bbec
+		summarizeBy: sum
+		sourceColumn: distance_over_24
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column distance_over_27
+		dataType: double
+		lineageTag: e87dba34-ebe1-4b26-8b2d-c09e55eb3c25
+		summarizeBy: sum
+		sourceColumn: distance_over_27
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column accel_decel_over_2_5
+		dataType: double
+		lineageTag: 3f63ef40-881f-44a9-bb3c-17697fc1795b
+		summarizeBy: sum
+		sourceColumn: accel_decel_over_2_5
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column accel_decel_over_3_5
+		dataType: double
+		lineageTag: 1bb7c4db-233a-4171-a85c-7084a754eb10
+		summarizeBy: sum
+		sourceColumn: accel_decel_over_3_5
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column accel_decel_over_4_5
+		dataType: double
+		lineageTag: 0bcae252-b3bb-4229-a818-9e0b4ef58fb4
+		summarizeBy: sum
+		sourceColumn: accel_decel_over_4_5
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column day_duration
+		dataType: double
+		lineageTag: 5d87b3c9-fb4d-4b80-bf6f-cbeb5faa7d58
+		summarizeBy: sum
+		sourceColumn: day_duration
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column peak_speed
+		dataType: double
+		lineageTag: e3ccc8d7-197d-45b3-ba9c-50b43072f794
+		summarizeBy: sum
+		sourceColumn: peak_speed
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hr_zone_1_hms
+		dataType: string
+		lineageTag: aa6a2149-26fa-4bca-bf84-f3039d5c9a45
+		summarizeBy: none
+		sourceColumn: hr_zone_1_hms
+
+		annotation SummarizationSetBy = Automatic
+
+	column hr_zone_2_hms
+		dataType: string
+		lineageTag: 32afbb39-ea83-41ad-8227-f376f7274989
+		summarizeBy: none
+		sourceColumn: hr_zone_2_hms
+
+		annotation SummarizationSetBy = Automatic
+
+	column hr_zone_3_hms
+		dataType: string
+		lineageTag: 06248beb-8aa2-4849-b07d-9b97e9f1b5f5
+		summarizeBy: none
+		sourceColumn: hr_zone_3_hms
+
+		annotation SummarizationSetBy = Automatic
+
+	column hr_zone_4_hms
+		dataType: string
+		lineageTag: 6b43e489-9a50-48fe-97ec-1fd522f4149b
+		summarizeBy: none
+		sourceColumn: hr_zone_4_hms
+
+		annotation SummarizationSetBy = Automatic
+
+	column hr_zone_5_hms
+		dataType: string
+		lineageTag: 1850aae3-86c9-4553-b61e-adb5f740fa86
+		summarizeBy: none
+		sourceColumn: hr_zone_5_hms
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CFC GPS Data' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Pranjali.Waghchaure\OneDrive - Parkar\Desktop\Capstone 3\DATA\CFC GPS Data.csv"),[Delimiter=",", Columns=20, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"peak_speed", type number}, {"day_duration", type number}, {"accel_decel_over_4_5", type number}, {"accel_decel_over_3_5", type number}, {"accel_decel_over_2_5", type number}, {"distance_over_27", type number}, {"distance_over_24", type number}, {"distance_over_21", type number}, {"distance", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,27 @@
+table RelativeOptions
+	lineageTag: 86f485c5-01f8-4380-a9fc-9cf9b5ca7a37
+
+	column Option
+		lineageTag: a27f5b8f-89cd-4214-8549-450fa33d4f57
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Option]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition RelativeOptions = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Option", STRING,
+				    {
+				        {"Today"},
+				        {"Yesterday"},
+				        {"Last N"},
+				        {"Next N"}
+				    }
+				)
+
+	annotation PBI_Id = 75840413d9f049128c3d9e16938b8335
+

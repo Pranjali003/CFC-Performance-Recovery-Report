@@ -1,0 +1,69 @@
+table 'Session Level Inflammation'
+	lineageTag: 1efc9fa6-78a4-45ca-9772-e288e7b885fa
+
+	measure SessionCount =
+			
+			COUNTROWS ( 'Session Level Inflammation' )
+		formatString: 0
+		lineageTag: f40e6244-1c5e-4c45-a19c-495027384134
+
+	column sessionDate
+		formatString: General Date
+		lineageTag: 444258b0-e884-4346-b337-ce029bc8ea0f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: CFC Recovery status Data[sessionDate]
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompositeScore
+		lineageTag: 2c5f820a-bb5e-4174-acfa-2c8314720ec9
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [CompositeScore]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Composite Score Bin' = ```
+			
+			FLOOR ( 'Session Level Inflammation'[CompositeScore], 0.1 )
+			
+			```
+		lineageTag: 44872134-7f6c-4139-b4e0-565dd7827fac
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Baseline Category' =
+			
+			SWITCH (
+			    TRUE(),
+			    'Session Level Inflammation'[CompositeScore] < 0, "Below Baseline",
+			    'Session Level Inflammation'[CompositeScore] = 0, "At Baseline",
+			    'Session Level Inflammation'[CompositeScore] > 0, "Above Baseline"
+			)
+		lineageTag: ae1dd332-7974-455b-ba43-eac5b0fc5f7c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Session Level Inflammation' = calculated
+		mode: import
+		source =
+				
+				SUMMARIZE (
+				    FILTER (
+				        'CFC Recovery status Data',
+				        'CFC Recovery status Data'[metric] = "soreness_baseline_composite"
+				            && NOT ISBLANK ( 'CFC Recovery status Data'[value] )
+				    ),
+				    'CFC Recovery status Data'[sessionDate],
+				    "CompositeScore", AVERAGE ( 'CFC Recovery status Data'[value] )
+				)
+
+	annotation PBI_Id = 683d04f8132a48ca9a289017c2866631
+

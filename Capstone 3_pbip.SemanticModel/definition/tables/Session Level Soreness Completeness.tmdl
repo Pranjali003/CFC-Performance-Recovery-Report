@@ -1,0 +1,41 @@
+table 'Session Level Soreness Completeness'
+	lineageTag: c8f7c141-bba3-4012-bd85-ff2713893753
+
+	column sessionDate
+		formatString: General Date
+		lineageTag: 602ed181-10d9-42c2-8969-c5ab08d68b45
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: CFC Recovery status Data[sessionDate]
+
+		annotation SummarizationSetBy = Automatic
+
+	column SorenessCompleteness
+		lineageTag: 94bd4fa2-65a3-4e1a-b744-36f3ecd1da40
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [SorenessCompleteness]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Session Level Soreness Completeness' = calculated
+		mode: import
+		source = ```
+				
+				SUMMARIZE (
+				    FILTER (
+				        'CFC Recovery status Data',
+				        'CFC Recovery status Data'[metric] = "soreness_baseline_completeness"
+				            && NOT ISBLANK ( 'CFC Recovery status Data'[value] )
+				    ),
+				    'CFC Recovery status Data'[sessionDate],
+				    "SorenessCompleteness",
+				        AVERAGE ( 'CFC Recovery status Data'[value] )
+				)
+				
+				```
+
+	annotation PBI_Id = a83444a0e87f4d55812c5ab2740f0290
+

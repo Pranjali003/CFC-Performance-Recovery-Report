@@ -1,0 +1,394 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "227e9ffab2c34ab88f7d",
+  "position": {
+    "x": 330,
+    "y": 502.85714285714289,
+    "z": 32000,
+    "height": 197.14285714285717,
+    "width": 894.28571428571433,
+    "tabOrder": 32000
+  },
+  "visual": {
+    "visualType": "PBI_CV_886A053E_9DFD_4EA0_A47D_CCAEB89AF969",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Session Level Soreness Completeness"
+                    }
+                  },
+                  "Property": "sessionDate"
+                }
+              },
+              "queryRef": "Session Level Soreness Completeness.sessionDate",
+              "nativeQueryRef": "sessionDate",
+              "active": true,
+              "format": "dd/MM/yyyy"
+            }
+          ]
+        },
+        "open": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Session Level Soreness Completeness"
+                        }
+                      },
+                      "Property": "SorenessCompleteness"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(Session Level Soreness Completeness.SorenessCompleteness)",
+              "nativeQueryRef": "Average of SorenessCompleteness"
+            }
+          ]
+        },
+        "close": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "comple"
+                    }
+                  },
+                  "Property": "Completeness Close"
+                }
+              },
+              "queryRef": "comple.Completeness Close",
+              "nativeQueryRef": "Completeness Close"
+            }
+          ]
+        },
+        "high": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "comple"
+                    }
+                  },
+                  "Property": "Completeness High"
+                }
+              },
+              "queryRef": "comple.Completeness High",
+              "nativeQueryRef": "Completeness High"
+            }
+          ]
+        },
+        "low": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "comple"
+                    }
+                  },
+                  "Property": "Completeness Low"
+                }
+              },
+              "queryRef": "comple.Completeness Low",
+              "nativeQueryRef": "Completeness Low"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Session Level Soreness Completeness"
+                      }
+                    },
+                    "Property": "SorenessCompleteness"
+                  }
+                },
+                "Function": 1
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Session Level Inflammation"
+                          }
+                        },
+                        "Property": "Baseline Category"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Above Baseline'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Session Level Inflammation"
+                          }
+                        },
+                        "Property": "Baseline Category"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'At Baseline'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Session Level Inflammation"
+                          }
+                        },
+                        "Property": "Baseline Category"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Below Baseline'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "bullishFill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#4A90E2'"
+                    }
+                  }
+                }
+              }
+            },
+            "highLowCaps": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'BottomCenter'"
+                }
+              }
+            },
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "yAxis": [
+        {
+          "properties": {
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "precision": {
+              "expr": {
+                "Literal": {
+                  "Value": "-1D"
+                }
+              }
+            },
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "xAxis": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1C233F'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,57 @@
+table 'CFC Physical Capability Data_'
+	lineageTag: 8e11ad0e-f5a4-4e42-b779-babefcfb7874
+
+	column testDate
+		dataType: string
+		lineageTag: ce86469d-a0ee-4590-96d4-e788ad755332
+		summarizeBy: none
+		sourceColumn: testDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column expression
+		dataType: string
+		lineageTag: 0f05578a-e648-4499-af70-48d54207819c
+		summarizeBy: none
+		sourceColumn: expression
+
+		annotation SummarizationSetBy = Automatic
+
+	column movement
+		dataType: string
+		lineageTag: 5b4e06d5-27da-4e64-857e-2070b1e2581a
+		summarizeBy: none
+		sourceColumn: movement
+
+		annotation SummarizationSetBy = Automatic
+
+	column quality
+		dataType: string
+		lineageTag: e127bf09-6e9c-4735-bac8-613b8013e22e
+		summarizeBy: none
+		sourceColumn: quality
+
+		annotation SummarizationSetBy = Automatic
+
+	column benchmarkPct
+		dataType: double
+		lineageTag: 57cc0a27-3fef-4f6f-8874-37c8b36b466d
+		summarizeBy: sum
+		sourceColumn: benchmarkPct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'CFC Physical Capability Data_' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Pranjali.Waghchaure\OneDrive - Parkar\Desktop\Capstone 3\DATA\CFC Physical Capability Data_.csv"),[Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"testDate", type text}, {"expression", type text}, {"movement", type text}, {"quality", type text}, {"benchmarkPct", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

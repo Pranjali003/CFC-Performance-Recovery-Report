@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "cd9a1d4afa87b20fc15f",
+  "position": {
+    "x": 287,
+    "y": 50,
+    "z": 40000,
+    "height": 53,
+    "width": 655,
+    "tabOrder": 34000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": " ",
+                    "textStyle": {
+                      "color": "#b8c1e0"
+                    }
+                  },
+                  {
+                    "value": "[BETA]",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#e8d166"
+                    }
+                  },
+                  {
+                    "value": " RECOVERY REPORT ",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": " ",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Percentages are test results relative to the player’s normative values for a specific category metric",
+                    "textStyle": {
+                      "color": "#b8c1e0"
+                    }
+                  },
+                  {
+                    "value": "                         ",
+                    "textStyle": {
+                      "fontFamily": "Aptos, sans-serif",
+                      "color": "#b8c1e0"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0E1630'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

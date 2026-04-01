@@ -1,0 +1,40 @@
+table Profile
+	lineageTag: 3ccaab4e-ca89-4dff-a3b7-4c2523bb1311
+
+	column 'Full Name'
+		dataType: string
+		lineageTag: 5ec10ecb-bf8d-474b-a72a-29ecb5881c67
+		summarizeBy: none
+		sourceColumn: Full Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tunde De Souza'
+		dataType: string
+		lineageTag: d342ef26-9a2e-4cab-8018-c9a428411485
+		summarizeBy: none
+		sourceColumn: Tunde De Souza
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Profile = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Pranjali.Waghchaure\Desktop\Data\Capstone 3\DATA\profile.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Full Name", type text}, {"Tunde De Souza", type any}}),
+				    #"Removed Alternate Rows" = Table.AlternateRows(#"Changed Type",3,1,12),
+				    #"Removed Alternate Rows1" = Table.AlternateRows(#"Removed Alternate Rows",5,1,11),
+				    #"Removed Alternate Rows2" = Table.AlternateRows(#"Removed Alternate Rows1",5,1,10),
+				    #"Removed Alternate Rows3" = Table.AlternateRows(#"Removed Alternate Rows2",3,1,9),
+				    #"Removed Alternate Rows4" = Table.AlternateRows(#"Removed Alternate Rows3",3,1,8),
+				    #"Removed Alternate Rows5" = Table.AlternateRows(#"Removed Alternate Rows4",1,1,7)
+				in
+				    #"Removed Alternate Rows5"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

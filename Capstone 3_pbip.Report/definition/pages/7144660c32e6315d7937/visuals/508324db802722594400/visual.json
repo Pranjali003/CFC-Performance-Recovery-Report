@@ -1,0 +1,314 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "508324db802722594400",
+  "position": {
+    "x": 288.88888888888886,
+    "y": 188.88888888888889,
+    "z": 54000,
+    "height": 204.44444444444443,
+    "width": 211.11111111111111,
+    "tabOrder": 250
+  },
+  "visual": {
+    "visualType": "RadarChart1446119667547",
+    "query": {
+      "queryState": {
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Table Measures"
+                    }
+                  },
+                  "Property": "Inflammation"
+                }
+              },
+              "queryRef": "Table Measures.Inflammation",
+              "nativeQueryRef": "Inflammation"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Table Measures"
+                    }
+                  },
+                  "Property": "Load Tolerance"
+                }
+              },
+              "queryRef": "Table Measures.Load Tolerance",
+              "nativeQueryRef": "Load Tolerance"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Table Measures"
+                    }
+                  },
+                  "Property": "Sleep"
+                }
+              },
+              "queryRef": "Table Measures.Sleep",
+              "nativeQueryRef": "Sleep"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Table Measures"
+                    }
+                  },
+                  "Property": "Soreness"
+                }
+              },
+              "queryRef": "Table Measures.Soreness",
+              "nativeQueryRef": "Soreness"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Table Measures"
+                    }
+                  },
+                  "Property": "Joint Range"
+                }
+              },
+              "queryRef": "Table Measures.Joint Range",
+              "nativeQueryRef": "Joint Range"
+            }
+          ]
+        },
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Radar Category"
+                    }
+                  },
+                  "Property": "Radar Category"
+                }
+              },
+              "queryRef": "Radar Category.Radar Category",
+              "nativeQueryRef": "Radar Category"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Table Measures"
+                  }
+                },
+                "Property": "Inflammation"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "line": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "lineWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'wf_standard-font, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#b8c1e0'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "displaySettings": [
+        {
+          "properties": {
+            "axisBeginning": {
+              "expr": {
+                "Literal": {
+                  "Value": "-1D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'  Relative Recovery Loss'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#B9C3EB'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0E1630'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

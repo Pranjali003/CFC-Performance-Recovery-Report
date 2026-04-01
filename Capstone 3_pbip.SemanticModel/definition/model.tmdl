@@ -1,0 +1,58 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["CFC GPS Data","CFC Individual Priority Areas","CFC Physical Capability Data_","CFC Recovery status Data","Radar Category","Player Profile","Date","Profile"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'CFC GPS Data'
+ref table 'CFC Individual Priority Areas'
+ref table DateTableTemplate_77a08e35-6f9d-4ad4-91fe-f4d115cb8387
+ref table 'CFC Physical Capability Data_'
+ref table 'CFC Recovery status Data'
+ref table 'Table Measures'
+ref table LocalDateTable_06fadc43-49a5-4837-b338-b75a77c4c102
+ref table 'Radar Category'
+ref table 'Player Profile'
+ref table LocalDateTable_750d9f59-194e-483b-b996-f2d58026d73f
+ref table Date
+ref table LocalDateTable_35508cbb-ddbd-4894-b5b7-a7e71614d8fd
+ref table LocalDateTable_6f52dee5-c6ff-4ec1-bee0-e7ea806adc12
+ref table LocalDateTable_d829ddeb-43eb-43e6-9367-9b40f4d2731b
+ref table 'Session Composite'
+ref table 'Granularity Parameter'
+ref table FilterType
+ref table RelativeOptions
+ref table StartDate
+ref table LocalDateTable_994d9ce4-6a5f-4159-a0e5-0922a13f5a4a
+ref table EndDate
+ref table LocalDateTable_301980c2-ef7a-4aec-8123-48eb47262db4
+ref table comple
+ref table 'Session Level Inflammation'
+ref table Profile
+ref table 'Session Level Joint Range'
+ref table 'Joint Range'
+ref table 'Joint Range Completeness'
+ref table 'Load Tolerance'
+ref table 'Load Tolerance Completeness'
+ref table 'Session Level Perceived Recovery'
+ref table 'Session Level Perceived Recovery Completeness'
+ref table 'Session Level Sleep'
+ref table 'Session Level Sleep Completeness'
+ref table 'Session Level Soreness'
+ref table 'Session Level Soreness Completeness'
+ref table 'cards(14,30 avg)'
+ref table LocalDateTable_caca4dcf-234d-4956-be0a-d2ce92e4d315
+ref table LocalDateTable_cb77aa08-fb85-408b-ae7c-d7e1759bebe8
+ref table LocalDateTable_c85f5154-8751-4b37-bb1f-586bb83002d6
+ref table LocalDateTable_b8820f38-e53f-4b6d-9ab5-f87a787ce1cc
+
+ref cultureInfo en-US
+

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "863a387930bab7ba0fa8",
+  "position": {
+    "x": 1221.6666666666667,
+    "y": 6.1111111111111107,
+    "z": 4000,
+    "height": 27.222222222222221,
+    "width": 35.555555555555557,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "image",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "imageUrl": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "icons8-notification-96535943614627637.png"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "imageScaling": [
+        {
+          "properties": {
+            "imageScalingType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Normal'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "howCreated": "InsertVisualButton"
+}

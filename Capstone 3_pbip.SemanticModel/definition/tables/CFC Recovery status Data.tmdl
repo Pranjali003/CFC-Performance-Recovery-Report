@@ -1,0 +1,105 @@
+table 'CFC Recovery status Data'
+	lineageTag: 1e9ebd99-6f29-4279-a7c3-849acb6e01d6
+
+	column sessionDate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: d3ccd4ec-d02c-47d9-9ce1-fe1dd1337db0
+		summarizeBy: none
+		sourceColumn: sessionDate
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column seasonName
+		dataType: string
+		lineageTag: 32a62324-57ed-40ec-8cce-8c7aa0843229
+		summarizeBy: none
+		sourceColumn: seasonName
+
+		annotation SummarizationSetBy = Automatic
+
+	column metric
+		dataType: string
+		lineageTag: 4c404aed-715a-4e81-a7be-2a4054307e84
+		summarizeBy: none
+		sourceColumn: metric
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 16d727d8-e888-454d-85c0-207a87d2a858
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: double
+		lineageTag: ab48212d-0ffb-4c24-a7ff-040faa85a916
+		summarizeBy: sum
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Composite Score Range' =
+			
+			SWITCH(
+			    TRUE(),
+			    'CFC Recovery status Data'[value] < -0.6, "-0.7 to -0.6",
+			    'CFC Recovery status Data'[value] < -0.5, "-0.6 to -0.5",
+			    'CFC Recovery status Data'[value] < -0.4, "-0.5 to -0.4",
+			    'CFC Recovery status Data'[value] < -0.3, "-0.4 to -0.3",
+			    'CFC Recovery status Data'[value] < -0.2, "-0.3 to -0.2",
+			    'CFC Recovery status Data'[value] < -0.1, "-0.2 to -0.1",
+			    'CFC Recovery status Data'[value] <  0.0, "-0.1 to 0.0",
+			    'CFC Recovery status Data'[value] >= 0.0, "0.0+"
+			)
+		lineageTag: 89fed0fd-9eed-4745-a24e-78abb8372aa0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Baseline Status' =
+			
+			SWITCH(
+			    TRUE(),
+			    'CFC Recovery status Data'[value] < 0, "Below Baseline",
+			    'CFC Recovery status Data'[value] = 0, "At Baseline",
+			    'CFC Recovery status Data'[value] > 0, "Above Baseline"
+			)
+		lineageTag: 897408c5-2eeb-4d9f-9583-6c670febeeab
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sort Order' = MIN('CFC Recovery status Data'[Composite Score Range])
+		lineageTag: 6070202b-2a3c-4f6a-adb6-ea040b8125e4
+		summarizeBy: none
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CFC Recovery status Data' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Pranjali.Waghchaure\OneDrive - Parkar\Desktop\Capstone 3\DATA\CFC Recovery status Data.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"sessionDate", type text}, {"seasonName", type text}, {"metric", type text}, {"category", type text}, {"value", type number}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type",{{"sessionDate", type date}}),
+				    #"Removed Errors" = Table.RemoveRowsWithErrors(#"Changed Type1", {"sessionDate"})
+				in
+				    #"Removed Errors"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

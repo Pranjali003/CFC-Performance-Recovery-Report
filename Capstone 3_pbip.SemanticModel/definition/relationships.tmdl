@@ -1,0 +1,155 @@
+relationship e4fb98e3-ab1e-487f-b82a-84fa027a6479
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'CFC Individual Priority Areas'.'Target set'
+	toColumn: LocalDateTable_06fadc43-49a5-4837-b338-b75a77c4c102.Date
+
+relationship 171b82f2-9c07-c5c7-296d-269a1135dea1
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'CFC GPS Data'.season
+	toColumn: 'CFC Recovery status Data'.seasonName
+
+relationship 4d123e2f-47c0-f7b5-5212-e42602864f55
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'CFC Physical Capability Data_'.testDate
+	toColumn: 'CFC Recovery status Data'.sessionDate
+
+relationship 3a6c3adc-b1dd-9d3b-5093-1b033009a146
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'CFC Individual Priority Areas'.'Review Date'
+	toColumn: 'CFC Recovery status Data'.sessionDate
+
+relationship d3dd263e-81e2-4cc1-ab78-0be476910c6e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Player Profile'.'Date of Birth'
+	toColumn: LocalDateTable_750d9f59-194e-483b-b996-f2d58026d73f.Date
+
+relationship 7edf485e-2e6a-46a8-bcef-b389577ab0ba
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Date.Year-Month
+	toColumn: LocalDateTable_35508cbb-ddbd-4894-b5b7-a7e71614d8fd.Date
+
+relationship 6e17a4b5-7d5f-4183-918d-4016c899ae35
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Date.'Week Start (Mon)'
+	toColumn: LocalDateTable_6f52dee5-c6ff-4ec1-bee0-e7ea806adc12.Date
+
+relationship f26db985-5964-4043-a764-85c9133790d9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Date.'Week End (Sun)'
+	toColumn: LocalDateTable_d829ddeb-43eb-43e6-9367-9b40f4d2731b.Date
+
+relationship b466e275-11c0-6a92-b4ff-fd352dc91832
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Player Profile'.'DOB (ISO)'
+	toColumn: Date.Date
+
+relationship de2b4610-22e3-1958-b452-8510acc25030
+	fromColumn: 'CFC Recovery status Data'.sessionDate
+	toColumn: Date.Date
+
+relationship 46b3935e-ea7b-45d6-a55b-3f0464c99c13
+	joinOnDateBehavior: datePartOnly
+	fromColumn: StartDate.Date
+	toColumn: LocalDateTable_994d9ce4-6a5f-4159-a0e5-0922a13f5a4a.Date
+
+relationship 56e76f97-cad3-4726-b28a-aa3a11106350
+	joinOnDateBehavior: datePartOnly
+	fromColumn: EndDate.Date
+	toColumn: LocalDateTable_301980c2-ef7a-4aec-8123-48eb47262db4.Date
+
+relationship b0baeb82-4f83-b347-84e7-d7a15bd38e70
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Joint Range'.sessionDate
+	toColumn: 'Joint Range Completeness'.sessionDate
+
+relationship 348b90e0-b001-15d2-cfb5-4d02a59938e1
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Load Tolerance'.sessionDate
+	toColumn: 'Load Tolerance Completeness'.sessionDate
+
+relationship 88951658-0455-20a3-f73d-a38900b7807b
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Session Level Perceived Recovery Completeness'.sessionDate
+	toColumn: 'Session Level Perceived Recovery'.sessionDate
+
+relationship 3381be00-8c08-bc23-e58f-d3716e2b75db
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Session Level Sleep Completeness'.sessionDate
+	toColumn: 'Session Level Sleep'.sessionDate
+
+relationship bcce953b-6a20-8a3b-a93e-cf61a383a237
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Session Level Soreness Completeness'.sessionDate
+	toColumn: 'Session Level Soreness'.sessionDate
+
+relationship e4455b3d-8560-eae8-2bf0-2db962de3b83
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Session Composite'.sessionDate
+	toColumn: Date.Date
+
+relationship 2cd888fb-275c-3109-4d2b-3faba9204c78
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Session Level Inflammation'.sessionDate
+	toColumn: 'Session Composite'.sessionDate
+
+relationship 3c12c4ad-7490-ed51-9038-4347c9e458d1
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Joint Range'.sessionDate
+	toColumn: 'Session Level Joint Range'.sessionDate
+
+relationship c3f984b5-0bd7-5e63-63d3-7122d91eb9c9
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Load Tolerance'.sessionDate
+	toColumn: Date.Date
+
+relationship 89d49b08-a98f-7524-d925-af4616c843ac
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Session Level Sleep'.sessionDate
+	toColumn: Date.Date
+
+relationship 1bdb65c0-2c70-fda2-8f01-c0250fd62c41
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Session Level Soreness'.sessionDate
+	toColumn: Date.Date
+
+relationship a60aaa85-82fa-ae3d-fa48-6fafc4263ec2
+	crossFilteringBehavior: bothDirections
+	fromColumn: Date.Date
+	toColumn: 'Session Level Joint Range'.sessionDate
+
+relationship 12d184be-ca16-93f8-989d-4ebfa9db2736
+	crossFilteringBehavior: bothDirections
+	fromColumn: Date.Date
+	toColumn: 'Session Level Perceived Recovery'.sessionDate
+
+relationship 48d6949d-cb3c-4579-88c9-f4553bd60bd4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Session Level Joint Range'.sessionDate
+	toColumn: LocalDateTable_caca4dcf-234d-4956-be0a-d2ce92e4d315.Date
+
+relationship 116d384d-4423-44db-81e7-d1966a8fef24
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Joint Range Completeness'.sessionDate
+	toColumn: LocalDateTable_cb77aa08-fb85-408b-ae7c-d7e1759bebe8.Date
+
+relationship fe817247-e583-4b84-bccd-a8708676a054
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Load Tolerance Completeness'.sessionDate
+	toColumn: LocalDateTable_c85f5154-8751-4b37-bb1f-586bb83002d6.Date
+
+relationship 35397a56-e1fc-48c9-93b2-8ca5b9086a5d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Session Level Perceived Recovery'.sessionDate
+	toColumn: LocalDateTable_b8820f38-e53f-4b6d-9ab5-f87a787ce1cc.Date
+

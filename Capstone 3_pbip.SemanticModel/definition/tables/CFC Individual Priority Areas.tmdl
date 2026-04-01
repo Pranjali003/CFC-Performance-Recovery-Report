@@ -1,0 +1,91 @@
+table 'CFC Individual Priority Areas'
+	lineageTag: 3ae84bd0-b869-4007-ac3b-a4d677748162
+
+	column Priority
+		dataType: int64
+		formatString: 0
+		lineageTag: 1bed1972-8653-4397-82fd-831cbfa29dc3
+		summarizeBy: sum
+		sourceColumn: Priority
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 964c4354-a716-4a26-9435-f247564567a9
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Area
+		dataType: string
+		lineageTag: caedc603-7131-491f-9db8-c36c08be693a
+		summarizeBy: none
+		sourceColumn: Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column Target
+		dataType: string
+		lineageTag: dec481f8-db59-4b5b-804b-d9f3357c18e2
+		summarizeBy: none
+		sourceColumn: Target
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Performance Type'
+		dataType: string
+		lineageTag: c4a802b0-4f68-449e-b9e3-441f91b4fd53
+		summarizeBy: none
+		sourceColumn: Performance Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Target set'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9f869051-ec24-441e-9b59-2d65a2587f4a
+		summarizeBy: none
+		sourceColumn: Target set
+
+		variation Variation
+			isDefault
+			relationship: e4fb98e3-ab1e-487f-b82a-84fa027a6479
+			defaultHierarchy: LocalDateTable_06fadc43-49a5-4837-b338-b75a77c4c102.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Review Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f61a14d4-30b6-4b51-a614-f911c2a4ca62
+		summarizeBy: none
+		sourceColumn: Review Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Tracking
+		dataType: string
+		lineageTag: 6c3ddb0e-a886-4233-a185-eae56bb890d3
+		summarizeBy: none
+		sourceColumn: Tracking
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CFC Individual Priority Areas' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Pranjali.Waghchaure\OneDrive - Parkar\Desktop\Capstone 3\DATA\CFC Individual Priority Areas.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Priority", Int64.Type}, {"Category", type text}, {"Area", type text}, {"Target", type text}, {"Performance Type", type text}, {"Target set", type date}, {"Review Date", type date}, {"Tracking", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

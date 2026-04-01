@@ -1,0 +1,134 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.2.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY25SU10",
+      "reportVersionAtImport": {
+        "visual": "2.1.0",
+        "report": "3.0.0",
+        "page": "2.3.0"
+      },
+      "type": "SharedResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          },
+          "visible": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "publicCustomVisuals": [
+    "histogram7D0E580F1FEB4DDA901A6D8146EA6387",
+    "histogramF963F133BA02A0B35D286F09F80E9C78",
+    "PBI_CV_886A053E_9DFD_4EA0_A47D_CCAEB89AF969",
+    "RadarChart1446119667547",
+    "radarChartE89D21F3E4E64221B79113B5015EA81B",
+    "tCardA89FF4DFB8224D269ECAE6467FD02019"
+  ],
+  "resourcePackages": [
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "Designer_(1)7251540726894161.png",
+          "path": "Designer_(1)7251540726894161.png",
+          "type": "Image"
+        },
+        {
+          "name": "icons8-circle-9615599321940521704.png",
+          "path": "icons8-circle-9615599321940521704.png",
+          "type": "Image"
+        },
+        {
+          "name": "icons8-error-966241654886290742.png",
+          "path": "icons8-error-966241654886290742.png",
+          "type": "Image"
+        },
+        {
+          "name": "icons8-filter-963306776684375703.png",
+          "path": "icons8-filter-963306776684375703.png",
+          "type": "Image"
+        },
+        {
+          "name": "icons8-notification-96535943614627637.png",
+          "path": "icons8-notification-96535943614627637.png",
+          "type": "Image"
+        },
+        {
+          "name": "icons8-open-962583783811124284.png",
+          "path": "icons8-open-962583783811124284.png",
+          "type": "Image"
+        },
+        {
+          "name": "icons8-sort-down-1006032182125373593.png",
+          "path": "icons8-sort-down-1006032182125373593.png",
+          "type": "Image"
+        },
+        {
+          "name": "icons8-yellow-circle-966905432187597531.png",
+          "path": "icons8-yellow-circle-966905432187597531.png",
+          "type": "Image"
+        },
+        {
+          "name": "palyer1-removebg-preview4944332992721293.png",
+          "path": "palyer1-removebg-preview4944332992721293.png",
+          "type": "Image"
+        },
+        {
+          "name": "Screenshot_2026-03-25_132909-r09684044739849895.png",
+          "path": "Screenshot_2026-03-25_132909-r09684044739849895.png",
+          "type": "Image"
+        }
+      ]
+    },
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY25SU10",
+          "path": "BaseThemes/CY25SU10.json",
+          "type": "BaseTheme"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}

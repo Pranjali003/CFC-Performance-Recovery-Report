@@ -1,0 +1,51 @@
+table 'Granularity Parameter'
+	lineageTag: 1714ff7e-f99c-498e-b5ef-b07de88e3f00
+
+	column Parameter
+		lineageTag: 7ef4474e-08e4-4c95-bb96-9eec6333cda8
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		isHidden
+		lineageTag: 60171ad6-bb98-4c0d-adce-2a099aa54af6
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: dfb50cbe-df8d-40ec-ab3a-b1e1f8dd9959
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Granularity Parameter' = calculated
+		mode: import
+		source =
+				{
+				    ("Year", NAMEOF('Date'[Year]), 0),
+				    ("Quarter", NAMEOF('Date'[Quarter]), 1),
+				    ("Month Name", NAMEOF('Date'[Month Name]), 2),
+				    ("ISO Week", NAMEOF('Date'[ISO Week]), 3),
+				    ("Date", NAMEOF('Date'[Date]), 4)
+				}
+
+	annotation PBI_Id = 5c5eabe25e8a42eebf8ed795c8a18608
+

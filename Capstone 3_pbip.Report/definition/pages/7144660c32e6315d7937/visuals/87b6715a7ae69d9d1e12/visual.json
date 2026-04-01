@@ -1,0 +1,101 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "87b6715a7ae69d9d1e12",
+  "position": {
+    "x": 286.66666666666669,
+    "y": 111.11111111111111,
+    "z": 45000,
+    "height": 52.222222222222221,
+    "width": 178.88888888888889,
+    "tabOrder": 335
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": " Overall Recovery",
+                    "textStyle": {
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": " ",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": " ",
+                    "textStyle": {
+                      "color": "#b8c1e0"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " Aggregate all matric score",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "8pt",
+                      "color": "#b8c1e0"
+                    }
+                  },
+                  {
+                    "value": " ",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "8pt",
+                      "color": "#b9c3eb"
+                    }
+                  },
+                  {
+                    "value": "                 ",
+                    "textStyle": {
+                      "color": "#b8c1e0"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#444F73'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

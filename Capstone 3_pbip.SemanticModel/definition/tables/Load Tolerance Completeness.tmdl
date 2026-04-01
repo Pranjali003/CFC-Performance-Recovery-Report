@@ -1,0 +1,43 @@
+table 'Load Tolerance Completeness'
+	lineageTag: 37d9b8f2-2613-4272-bbf1-9e9570f1d3b8
+
+	column sessionDate
+		formatString: General Date
+		lineageTag: ee62230d-a831-4f76-9985-3fc2818cf23a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: CFC Recovery status Data[sessionDate]
+
+		variation Variation
+			isDefault
+			relationship: fe817247-e583-4b84-bccd-a8708676a054
+			defaultHierarchy: LocalDateTable_c85f5154-8751-4b37-bb1f-586bb83002d6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadToleranceCompleteness
+		lineageTag: 0052fdd0-5aff-47eb-bc65-b1447ebaa602
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [LoadToleranceCompleteness]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Load Tolerance Completeness' = calculated
+		mode: import
+		source =
+				
+				SUMMARIZE (
+				    FILTER (
+				        'CFC Recovery status Data',
+				        'CFC Recovery status Data'[metric] = "msk_load_tolerance_baseline_completeness"
+				            && NOT ISBLANK ( 'CFC Recovery status Data'[value] )
+				    ),
+				    'CFC Recovery status Data'[sessionDate],
+				    "LoadToleranceCompleteness", AVERAGE ( 'CFC Recovery status Data'[value] )
+				)
+
+	annotation PBI_Id = eb4018dfb1d54d6b9e66873989731473
+

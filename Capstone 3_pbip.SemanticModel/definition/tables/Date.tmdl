@@ -1,0 +1,249 @@
+table Date
+	lineageTag: eb847ab4-48cd-4a92-93a0-b7612590caf2
+
+	measure IsToday = ```
+			
+			IF ( MAX('Date'[Date]) = TODAY(), 1, 0 )
+			
+			```
+		formatString: 0
+		lineageTag: a0adcaec-72dd-4f30-afce-a417023fc885
+
+	measure IsYesterday = ```
+			
+			IF ( MAX('Date'[Date]) = TODAY() - 1, 1, 0 )
+			
+			```
+		formatString: 0
+		lineageTag: b314a233-556c-4da0-9ae1-56faf046f62a
+
+	measure SelectedFilter = ```
+			
+			VAR SelectedType = SELECTEDVALUE(FilterType[Type])
+			VAR SelectedOption = SELECTEDVALUE(RelativeOptions[Option])
+			VAR N = SELECTEDVALUE('N Value'[N Value])
+			VAR TodayDate = TODAY()
+			 
+			RETURN
+			SWITCH(
+			    TRUE(),
+			 
+			    // RELATIVE
+			    SelectedType = "Relative" && SelectedOption = "Today",
+			        IF(MAX('Date'[Date]) = TodayDate, 1, 0),
+			 
+			    SelectedType = "Relative" && SelectedOption = "Yesterday",
+			        IF(MAX('Date'[Date]) = TodayDate - 1, 1, 0),
+			 
+			    SelectedType = "Relative" && SelectedOption = "Last N",
+			        IF(MAX('Date'[Date]) >= TodayDate - N, 1, 0),
+			 
+			    SelectedType = "Relative" && SelectedOption = "Next N",
+			        IF(MAX('Date'[Date]) <= TodayDate + N, 1, 0),
+			 
+			    // RANGE
+			    SelectedType = "Range",
+			        IF(
+			            MAX('Date'[Date]) >= MIN(StartDate[Date]) &&
+			            MAX('Date'[Date]) <= MAX(EndDate[Date]),
+			            1, 0
+			        ),
+			 
+			    // START
+			    SelectedType = "Start",
+			        IF(MAX('Date'[Date]) >= MIN(StartDate[Date]), 1, 0),
+			 
+			    // END
+			    SelectedType = "End",
+			        IF(MAX('Date'[Date]) <= MAX(EndDate[Date]), 1, 0),
+			 
+			    1
+			)
+			```
+		formatString: 0
+		lineageTag: 81c23904-b05b-4710-935d-d971c31dd00c
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 872e7442-4543-4f69-9177-b10fe5864bc3
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date Key'
+		dataType: int64
+		formatString: 0
+		lineageTag: 062e5b0f-6394-468d-b908-5902a6ef62fd
+		summarizeBy: count
+		sourceColumn: Date Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 2c2b145f-923b-49f2-bb9a-0da1acc45dd5
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f0b65d0-561b-48b7-8c75-380be0c3ba67
+		summarizeBy: sum
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quarter Label'
+		dataType: string
+		lineageTag: f6f47793-8fab-440d-be35-f2e5f08c3052
+		summarizeBy: none
+		sourceColumn: Quarter Label
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 18dc2196-96ab-4331-b581-a0b8c4156bb3
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: 2bf0bbb6-3945-446a-9b85-6c531dc5b1dd
+		summarizeBy: none
+		sourceColumn: Month Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year-Month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 00bff012-8311-41b5-9715-883882967442
+		summarizeBy: none
+		sourceColumn: Year-Month
+
+		variation Variation
+			isDefault
+			relationship: 7edf485e-2e6a-46a8-bcef-b389577ab0ba
+			defaultHierarchy: LocalDateTable_35508cbb-ddbd-4894-b5b7-a7e71614d8fd.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Day
+		dataType: int64
+		formatString: 0
+		lineageTag: 56d0c22d-d2dc-4f0d-86d2-73ef7af1e0d5
+		summarizeBy: sum
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ISO Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: cad2efdd-a083-4ca2-aab3-4ccf065f3fbc
+		summarizeBy: sum
+		sourceColumn: ISO Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ISO Week'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8d329165-79cc-43c1-84c0-cd4580c9f2c8
+		summarizeBy: sum
+		sourceColumn: ISO Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week Start (Mon)'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8e664860-a195-4f8a-982d-5d516301da7e
+		summarizeBy: none
+		sourceColumn: Week Start (Mon)
+
+		variation Variation
+			isDefault
+			relationship: 6e17a4b5-7d5f-4183-918d-4016c899ae35
+			defaultHierarchy: LocalDateTable_6f52dee5-c6ff-4ec1-bee0-e7ea806adc12.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Week End (Sun)'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: eddc13e3-fa2e-4021-bfc7-ae518d12cbca
+		summarizeBy: none
+		sourceColumn: Week End (Sun)
+
+		variation Variation
+			isDefault
+			relationship: f26db985-5964-4043-a764-85c9133790d9
+			defaultHierarchy: LocalDateTable_d829ddeb-43eb-43e6-9367-9b40f4d2731b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Is Today'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7b93b9a3-6525-45db-bd21-ffb74df9bc15
+		summarizeBy: none
+		sourceColumn: Is Today
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Weekend'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f0d84d48-8b47-436a-960d-f4f5a76fcc06
+		summarizeBy: none
+		sourceColumn: Is Weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Year (Apr-Mar)'
+		dataType: int64
+		formatString: 0
+		lineageTag: c163f84b-442d-452b-a4fe-b0ae2784b635
+		summarizeBy: sum
+		sourceColumn: Fiscal Year (Apr-Mar)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Quarter'
+		dataType: string
+		lineageTag: 77b89889-5d27-4e11-802b-e0a5cf217d0f
+		summarizeBy: none
+		sourceColumn: Fiscal Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Date = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Pranjali.Waghchaure\Desktop\Data\Capstone 3\DATA\date_dimension.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type datetime}, {"Date Key", Int64.Type}, {"Year", Int64.Type}, {"Quarter", Int64.Type}, {"Quarter Label", type text}, {"Month", Int64.Type}, {"Month Name", type text}, {"Year-Month", type date}, {"Day", Int64.Type}, {"ISO Year", Int64.Type}, {"ISO Week", Int64.Type}, {"Week Start (Mon)", type date}, {"Week End (Sun)", type date}, {"Is Today", type logical}, {"Is Weekend", type logical}, {"Fiscal Year (Apr-Mar)", Int64.Type}, {"Fiscal Quarter", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

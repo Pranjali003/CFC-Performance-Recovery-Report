@@ -1,0 +1,72 @@
+table 'Session Level Soreness'
+	lineageTag: c725e53f-57d4-40b1-ae61-284c1024d2c1
+
+	measure 'SessionCount SR' =
+			
+			COUNTROWS ( 'Session Level Soreness' )
+		formatString: 0
+		lineageTag: 3b1f2376-c2e0-4ae3-b976-989d45915932
+
+	column sessionDate
+		formatString: General Date
+		lineageTag: 7eb30872-a22a-438c-bef0-b47223db2efd
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: CFC Recovery status Data[sessionDate]
+
+		annotation SummarizationSetBy = Automatic
+
+	column SorenessScore
+		lineageTag: 605c3159-5ce3-422b-a9c0-f9f2879fd815
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [SorenessScore]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Soreness Baseline Category' =
+			
+			SWITCH (
+			    TRUE(),
+			    'Session Level Soreness'[SorenessScore] < 0, "Below Baseline",
+			    'Session Level Soreness'[SorenessScore] = 0, "At Baseline",
+			    "Above Baseline"
+			)
+		lineageTag: b6134922-4bb6-4379-b541-92a6f12cdea0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Soreness Bin' = ```
+			
+			FLOOR ( 'Session Level Soreness'[SorenessScore], 0.1 )
+			
+			```
+		lineageTag: 1d54c7eb-8820-428a-8456-453053e35ff3
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Session Level Soreness' = calculated
+		mode: import
+		source = ```
+				
+				SUMMARIZE (
+				    FILTER (
+				        'CFC Recovery status Data',
+				        'CFC Recovery status Data'[metric] = "soreness_baseline_composite"
+				            && NOT ISBLANK ( 'CFC Recovery status Data'[value] )
+				    ),
+				    'CFC Recovery status Data'[sessionDate],
+				    "SorenessScore",
+				        AVERAGE ( 'CFC Recovery status Data'[value] )
+				)
+				
+				```
+
+	annotation PBI_Id = 32fcbd371796483c807bf156d5e4a071
+

@@ -1,0 +1,126 @@
+table 'Session Composite'
+	lineageTag: b00d9bef-06f9-4f39-afa8-c23c79c8c184
+
+	measure 'Session Composite Score' =
+			
+			AVERAGEX(
+			    FILTER(
+			        'CFC Recovery status Data',
+			        NOT ISBLANK('CFC Recovery status Data'[value])
+			    ),
+			    'CFC Recovery status Data'[value]
+			)
+		lineageTag: 1635b22d-8296-4ac3-ae18-8bff68de4ab1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Session Completeness %' =
+			
+			AVERAGEX(
+			    FILTER(
+			        'CFC Recovery status Data',
+			        CONTAINSSTRING(
+			            'CFC Recovery status Data'[metric],
+			            "_completeness"
+			        )
+			    ),
+			    'CFC Recovery status Data'[value]
+			) * 100
+		lineageTag: 319729a2-d44b-4d73-9e4c-710ae30e4334
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column sessionDate
+		formatString: General Date
+		lineageTag: 6a222c10-05b7-4231-93d3-8b3fa4868fbc
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: CFC Recovery status Data[sessionDate]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Composite Score'
+		lineageTag: e5678e7d-e85e-4083-b33d-73af06153576
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Composite Score]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Composite Score Range' =
+			
+			SWITCH(
+			    TRUE(),
+			    'Session Composite'[Composite Score] < -0.6, "-0.7 to -0.6",
+			    'Session Composite'[Composite Score] < -0.5, "-0.6 to -0.5",
+			    'Session Composite'[Composite Score] < -0.4, "-0.5 to -0.4",
+			    'Session Composite'[Composite Score] < -0.3, "-0.4 to -0.3",
+			    'Session Composite'[Composite Score] < -0.2, "-0.3 to -0.2",
+			    'Session Composite'[Composite Score] < -0.1, "-0.2 to -0.1",
+			    'Session Composite'[Composite Score] <  0.0, "-0.1 to 0.0",
+			    'Session Composite'[Composite Score] >= 0.0, "0.0+"
+			)
+		lineageTag: 804e49d4-9dae-4db1-af30-1b55ab62f975
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Session Composite","TableItemName":"Composite Score Range (groups)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column 'Session Count' =
+			
+			COUNTROWS('Session Composite')
+		formatString: 0
+		lineageTag: a4c025e2-e7fc-4900-8ced-9ff7f1abe9a8
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Composite Score Range (groups)' =
+			SWITCH(
+				TRUE,
+				ISBLANK('Session Composite'[Composite Score Range]),
+				"(Blank)",
+				'Session Composite'[Composite Score Range] IN {"-0.1 to 0.0"},
+				"-0.1 to 0.0",
+				'Session Composite'[Composite Score Range]
+			)
+		lineageTag: e901225a-015e-4551-a3cd-26481cb5f072
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Session Composite"
+				          }
+				        },
+				        "Property": "Composite Score Range"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"s","Entity":"Session Composite"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"Composite Score Range"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"-0.1 to 0.0","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"Composite Score Range"}}],"Values":[[{"Literal":{"Value":"'-0.1 to 0.0'"}}]]}}}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Session Composite' = calculated
+		mode: import
+		source =
+				
+				SUMMARIZE(
+				    'CFC Recovery status Data',
+				    'CFC Recovery status Data'[sessionDate],
+				    "Composite Score",
+				        AVERAGE('CFC Recovery status Data'[value])
+				)
+
+	annotation PBI_Id = 3cd76043f6894388a05820c697180df1
+

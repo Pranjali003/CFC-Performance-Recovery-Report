@@ -1,0 +1,76 @@
+table 'Session Level Joint Range'
+	lineageTag: d36460c9-c709-452b-ac08-974cd2da1bdd
+
+	measure 'SessionCount JR' = ```
+			
+			COUNTROWS ( 'Session Level Joint Range' )
+			    
+			```
+		formatString: 0
+		lineageTag: c4616f82-5d56-4a75-be1f-57f1019d742f
+
+	column sessionDate
+		formatString: General Date
+		lineageTag: 5b81400d-3cbc-491d-a9ce-9d69813c534b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: CFC Recovery status Data[sessionDate]
+
+		variation Variation
+			isDefault
+			relationship: 48d6949d-cb3c-4579-88c9-f4553bd60bd4
+			defaultHierarchy: LocalDateTable_caca4dcf-234d-4956-be0a-d2ce92e4d315.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column JointRangeScore
+		lineageTag: 0f22bedf-f666-4d6a-957b-20d87c4c1325
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [JointRangeScore]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Joint Range Baseline Category' =
+			
+			SWITCH (
+			    TRUE(),
+			    'Session Level Joint Range'[JointRangeScore] < 0, "Below Baseline",
+			    'Session Level Joint Range'[JointRangeScore] = 0, "At Baseline",
+			    'Session Level Joint Range'[JointRangeScore] > 0, "Above Baseline"
+			)
+		lineageTag: 898558da-769c-4a56-9513-80d5413c87b4
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Joint Range Bin' = ```
+			
+			FLOOR ( 'Session Level Joint Range'[JointRangeScore], 0.1 )
+			
+			```
+		lineageTag: 62500440-9dfb-4e7d-a68e-84fe264751c1
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Session Level Joint Range' = calculated
+		mode: import
+		source =
+				
+				SUMMARIZE (
+				    FILTER (
+				        'CFC Recovery status Data',
+				        'CFC Recovery status Data'[metric] = "msk_joint_range_baseline_composite"
+				            && NOT ISBLANK ( 'CFC Recovery status Data'[value] )
+				    ),
+				    'CFC Recovery status Data'[sessionDate],
+				    "JointRangeScore", AVERAGE ( 'CFC Recovery status Data'[value] )
+				)
+
+	annotation PBI_Id = 58565a5e61e040dfa74187c3aeb58ec1
+

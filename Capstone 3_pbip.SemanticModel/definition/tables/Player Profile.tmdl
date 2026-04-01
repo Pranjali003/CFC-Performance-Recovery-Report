@@ -1,0 +1,144 @@
+table 'Player Profile'
+	lineageTag: 198216a4-c899-42ca-b59b-75adb1b0a789
+
+	column 'Full Name'
+		dataType: string
+		lineageTag: a294e673-9fbe-4a03-94e9-b4c737fb44e8
+		summarizeBy: none
+		sourceColumn: Full Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Preferred Name'
+		dataType: string
+		lineageTag: 3330c080-8523-4c9a-8120-007990e853cb
+		summarizeBy: none
+		sourceColumn: Preferred Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Age (years)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 871da19f-1197-4e35-b943-463fa45cea66
+		summarizeBy: sum
+		sourceColumn: Age (years)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date of Birth'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 81f352ce-eb9f-4dd0-ac44-585e6d3ee93d
+		summarizeBy: none
+		sourceColumn: Date of Birth
+
+		variation Variation
+			isDefault
+			relationship: d3dd263e-81e2-4cc1-ab78-0be476910c6e
+			defaultHierarchy: LocalDateTable_750d9f59-194e-483b-b996-f2d58026d73f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'DOB (ISO)'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 231a259e-dc3d-4212-a269-701df3991d7f
+		summarizeBy: none
+		sourceColumn: DOB (ISO)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Height (cm)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e5ddd46-cf01-4bee-a178-e488467adc12
+		summarizeBy: sum
+		sourceColumn: Height (cm)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Height (ft''''in)'
+		dataType: string
+		lineageTag: c75c24b4-d4a1-4ac1-a61f-008e1d585844
+		summarizeBy: none
+		sourceColumn: Height (ft''in)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Weight (kg)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 09ade378-6716-4893-a8c7-09ad840472f2
+		summarizeBy: sum
+		sourceColumn: Weight (kg)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Weight (lbs)'
+		dataType: int64
+		formatString: 0
+		lineageTag: e9e03b5c-c2bc-4cb4-ab3e-43d6e304adfa
+		summarizeBy: sum
+		sourceColumn: Weight (lbs)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dominant Foot'
+		dataType: string
+		lineageTag: 0bd2eff0-50e8-41bb-b064-fe1e640d5486
+		summarizeBy: none
+		sourceColumn: Dominant Foot
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nationality
+		dataType: string
+		lineageTag: 7a3dd6fa-6d08-4d9a-a77a-96829476c911
+		summarizeBy: none
+		sourceColumn: Nationality
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Primary Position'
+		dataType: string
+		lineageTag: cca663ee-33a6-4b81-aa6c-f995b8858131
+		summarizeBy: none
+		sourceColumn: Primary Position
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Squad Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: c19355d3-68b3-499b-bba6-f582b3f69fd0
+		summarizeBy: sum
+		sourceColumn: Squad Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contract Status'
+		dataType: string
+		lineageTag: 4134098f-ea7e-43e5-b96d-b57cae6e160c
+		summarizeBy: none
+		sourceColumn: Contract Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Player Profile' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Pranjali.Waghchaure\Desktop\Data\Capstone 3\DATA\player_profile.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Full Name", type text}, {"Preferred Name", type text}, {"Age (years)", Int64.Type}, {"Date of Birth", type date}, {"DOB (ISO)", type date}, {"Height (cm)", Int64.Type}, {"Height (ft''in)", type text}, {"Weight (kg)", Int64.Type}, {"Weight (lbs)", Int64.Type}, {"Dominant Foot", type text}, {"Nationality", type text}, {"Primary Position", type text}, {"Squad Number", Int64.Type}, {"Contract Status", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
